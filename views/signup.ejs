@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signup - DevHub</title>
+  </head>
+
+  <body>
+    <h1>DevHub Signup</h1>
+
+    <form action="/signup" method="POST">
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" required />
+      </div>
+
+      <br />
+
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" required />
+      </div>
+
+      <br />
+
+      <div>
+        <label>Password</label>
+        <input type="password" name="password" required />
+      </div>
+
+      <br />
+
+      <div>
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword" required />
+      </div>
+
+      <br />
+
+      <button type="submit">Signup</button>
+    </form>
+
+    <p>
+      Already have an account?
+      <a href="/login">Login</a>
+    </p>
+  </body>
+</html>
