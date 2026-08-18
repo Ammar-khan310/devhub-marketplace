@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
+const multer = require("multer");
 
 const connectMongoDB = require("./config/db");
 const logger = require("./config/logger");
@@ -17,9 +18,11 @@ const fileRoutes = require("./routes/fileRoutes");
 
 const errorHandler = require("./middleware/errorHandler");
 
+const upload = multer({ dest: "uploads/" });
+
 const app = express();
 
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT;
 
 // MongoDB
 connectMongoDB();
@@ -30,7 +33,12 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Security
-app.use(helmet());
+// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+);
 
 app.use(
   cors({
@@ -59,7 +67,6 @@ app.use(
 
 // Routes
 app.use("/", authRoutes);
-
 app.use("/files", fileRoutes);
 
 // Global error handler

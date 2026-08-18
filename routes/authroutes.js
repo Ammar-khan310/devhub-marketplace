@@ -34,6 +34,11 @@ authRouter.get("/login", (req, res) => {
   res.render("login");
 });
 
+authRouter.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/login");
+});
+
 authRouter.post("/signup", validate(signupSchema), signup);
 
 authRouter.post("/login", rateLimiter, validate(loginSchema), login);

@@ -1,0 +1,97 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>DevHub</h2>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="/dashboard" class="sidebar-link">
+      <span>🏠</span>
+      <span>Dashboard</span>
+    </a>
+
+    <a href="/files" class="sidebar-link">
+      <span>📁</span>
+      <span>My Files</span>
+    </a>
+
+    <a href="/files/upload" class="sidebar-link">
+      <span>⬆️</span>
+      <span>Upload File</span>
+    </a>
+
+    <a href="/products" class="sidebar-link">
+      <span>🛒</span>
+      <span>Products</span>
+    </a>
+
+    <a href="/profile" class="sidebar-link">
+      <span>👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="/auth/logout" class="sidebar-link logout">
+      <span>🚪</span>
+      <span>Logout</span>
+    </a>
+  </div>
+</aside>
+
+<style>
+  .sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #111827;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+
+  .sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid #374151;
+  }
+
+  .sidebar-header h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .sidebar-nav {
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: #d1d5db;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.2s;
+  }
+
+  .sidebar-link:hover {
+    background: #1f2937;
+    color: white;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 15px 12px;
+    border-top: 1px solid #374151;
+  }
+
+  .logout:hover {
+    background: #7f1d1d;
+  }
+</style>

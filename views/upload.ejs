@@ -2,35 +2,195 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Upload File - DevHub</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        font-family: Arial, sans-serif;
+
+        background: #f4f4f4;
+
+        color: #222;
+      }
+
+      .upload-container {
+        width: 100%;
+
+        max-width: 500px;
+
+        background: white;
+
+        padding: 40px;
+
+        border-radius: 14px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      h1 {
+        text-align: center;
+
+        margin-top: 0;
+
+        margin-bottom: 15px;
+
+        font-size: 30px;
+
+        letter-spacing: -1px;
+      }
+
+      .welcome {
+        text-align: center;
+
+        margin-bottom: 30px;
+
+        color: #555;
+      }
+
+      .welcome strong {
+        color: #222;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+
+        margin-bottom: 10px;
+
+        font-weight: bold;
+      }
+
+      input[type="file"] {
+        width: 100%;
+
+        padding: 12px;
+
+        border: 1px solid #ccc;
+
+        border-radius: 7px;
+
+        background: #fafafa;
+
+        font-size: 14px;
+
+        cursor: pointer;
+      }
+
+      input[type="file"]:focus {
+        border-color: #222;
+
+        outline: none;
+      }
+
+      .upload-button {
+        width: 100%;
+
+        padding: 13px;
+
+        border: none;
+
+        border-radius: 7px;
+
+        background: #222;
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+      }
+
+      .upload-button:hover {
+        background: #444;
+      }
+
+      .back-link {
+        display: block;
+
+        margin-top: 20px;
+
+        text-align: center;
+
+        color: #222;
+
+        font-weight: bold;
+
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+      .supported {
+        margin-top: 15px;
+
+        text-align: center;
+
+        font-size: 13px;
+
+        color: #777;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>Upload File</h1>
+    <div class="upload-container">
+      <h1>Upload File</h1>
 
-    <p>Welcome, <strong><%= user.name %></strong></p>
+      <p class="welcome">
+        Welcome,
+        <strong> <%= user.name %> </strong>
+      </p>
 
-    <form action="/files/upload" method="POST" enctype="multipart/form-data">
-      <label>Select Image or PDF:</label>
+      <form
+        action="<%= folderId ? '/files/upload/' + folderId : '/files/upload' %>"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label> Select Image or PDF </label>
 
-      <br /><br />
+          <input
+            type="file"
+            name="file"
+            accept="image/jpeg,image/png,image/webp,application/pdf"
+            required
+          />
 
-      <input
-        type="file"
-        name="file"
-        accept="image/jpeg,image/png,image/webp,application/pdf"
-        required
-      />
+          <div class="supported">
+            Supported: JPG, PNG, WEBP and PDF
+            <br />
+            Maximum size: 10 MB
+          </div>
+        </div>
 
-      <br /><br />
+        <button type="submit" class="upload-button">Upload File</button>
+      </form>
 
-      <button type="submit">Upload</button>
-    </form>
-
-    <br />
-
-    <a href="/files"> ← Back to My Files </a>
+      <a href="/files" class="back-link"> ← Back to My Files </a>
+    </div>
   </body>
 </html>
