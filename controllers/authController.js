@@ -1,25 +1,8 @@
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
-const AppError = require("../utils/AppError");
-const { generateToken } = require("../utils/jwtHelpers");
+const authService = require("../services/authService");
 
 async function signup(req, res, next) {
   try {
-    const { name, email, password } = req.body;
-
-    const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
-      return next(new AppError("Email already registered", 400));
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 12);
-
-    await User.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
+    await authService.signup(req.body);
 
     res.redirect("/login");
   } catch (error) {
@@ -29,21 +12,7 @@ async function signup(req, res, next) {
 
 async function login(req, res, next) {
   try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return next(new AppError("Invalid email or password", 401));
-    }
-
-    const passwordCorrect = await bcrypt.compare(password, user.password);
-
-    if (!passwordCorrect) {
-      return next(new AppError("Invalid email or password", 401));
-    }
-
-    const token = generateToken(user._id);
+    const token = await authService.login(req.body);
 
     res.cookie("token", token, {
       httpOnly: true,

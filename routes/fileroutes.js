@@ -10,12 +10,15 @@ const {
   uploadFile,
   viewFile,
   deleteFile,
+} = require("../controllers/fileController");
+
+const {
+  createFolder,
   openFolder,
   deleteFolder,
-} = require("../controllers/fileController");
-const { createFolder } = require("../controllers/folderController");
+} = require("../controllers/folderController");
 
-// view allusers
+// view all files
 fileRouter.get("/", protect, showFiles);
 
 // create folder
@@ -23,7 +26,6 @@ fileRouter.post("/folder/create", protect, createFolder);
 
 // open folder
 fileRouter.get("/folder/:id", protect, openFolder);
-
 // upload page
 fileRouter.get("/upload", protect, (req, res) => {
   res.render("upload", {
@@ -41,23 +43,18 @@ fileRouter.get("/upload/:folderId", protect, (req, res) => {
 });
 
 // upload file root
-fileRouter.post("/upload", protect, upload.single("file"), uploadFile);
+fileRouter.post("/upload",protect,upload.single("file"),uploadFile);
 
 // upload file inside folder
-fileRouter.post(
-  "/upload/:folderId",
-  protect,
-  upload.single("file"),
-  uploadFile,
-);
+fileRouter.post("/upload/:folderId",protect,upload.single("file"),uploadFile);
 
-// view image pddf
+// view image/pdf
 fileRouter.get("/:id", protect, viewFile);
 
-// delete files
+// delete file
 fileRouter.delete("/:id", protect, deleteFile);
 
 // delete folder
-fileRouter.delete("/folder/:folderId", protect, deleteFolder);
+fileRouter.delete("/folder/:folderId",protect,deleteFolder);
 
 module.exports = fileRouter;
