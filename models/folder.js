@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const createFolderValidation = require("../validation/foldervalidation");
 
 const folderSchema = new mongoose.Schema(
   {
@@ -6,6 +7,7 @@ const folderSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      createFolderValidation: true,
     },
 
     owner: {

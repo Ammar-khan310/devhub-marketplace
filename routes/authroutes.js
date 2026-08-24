@@ -43,4 +43,8 @@ authRouter.post("/signup", validate(signupSchema), signup);
 
 authRouter.post("/login", rateLimiter, validate(loginSchema), login);
 
+authRouter.get("/", (req, res) => {
+  res.redirect("/signup");
+});
+
 module.exports = authRouter;

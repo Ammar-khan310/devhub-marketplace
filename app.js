@@ -40,12 +40,7 @@ app.use(
   }),
 );
 
-app.use(
-  cors({
-    origin: "http://localhost:8001",
-    credentials: true,
-  }),
-);
+app.use(cors());
 
 // Body parsing
 app.use(express.json());
@@ -72,6 +67,10 @@ app.use("/files", fileRoutes);
 // Global error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server running at port: ${PORT}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server running at port ${PORT}`);
+  });
+}
+
+module.exports = app;
