@@ -1,6 +1,6 @@
 const File = require("../models/file");
 const Folder = require("../models/folder");
-const AppError = require("../utils/apperror");
+const AppError = require("../utils/AppError");
 const fs = require("fs");
 
 async function showFiles(userId) {

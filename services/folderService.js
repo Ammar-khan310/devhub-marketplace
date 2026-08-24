@@ -1,6 +1,6 @@
 const Folder = require("../models/folder");
 const File = require("../models/file");
-const AppError = require("../utils/apperror");
+const AppError = require("../utils/AppError");
 const fs = require("fs");
 
 async function createFolder({ name, userId }) {
