@@ -43,10 +43,15 @@ fileRouter.get("/upload/:folderId", protect, (req, res) => {
 });
 
 // upload file root
-fileRouter.post("/upload",protect,upload.single("file"),uploadFile);
+fileRouter.post("/upload", protect, upload.single("file"), uploadFile);
 
 // upload file inside folder
-fileRouter.post("/upload/:folderId",protect,upload.single("file"),uploadFile);
+fileRouter.post(
+  "/upload/:folderId",
+  protect,
+  upload.single("file"),
+  uploadFile,
+);
 
 // view image/pdf
 fileRouter.get("/:id", protect, viewFile);
@@ -55,6 +60,6 @@ fileRouter.get("/:id", protect, viewFile);
 fileRouter.delete("/:id", protect, deleteFile);
 
 // delete folder
-fileRouter.delete("/folder/:folderId",protect,deleteFolder);
+fileRouter.delete("/folder/:folderId", protect, deleteFolder);
 
 module.exports = fileRouter;

@@ -17,8 +17,8 @@ const fileSchema = new mongoose.Schema(
       required: true,
     },
 
-    path: {
-      type: String,
+    data: {
+      type: Buffer,
       required: true,
     },
 
@@ -27,18 +27,12 @@ const fileSchema = new mongoose.Schema(
       ref: "user",
       required: true,
     },
-
-    folder: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Folder",
-      default: null,
-    },
   },
   {
     timestamps: true,
   },
 );
 
-const File = mongoose.models.File || mongoose.model("File", fileSchema);
+const File = mongoose.model("File", fileSchema);
 
 module.exports = File;
