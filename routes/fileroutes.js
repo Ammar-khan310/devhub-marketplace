@@ -53,13 +53,13 @@ fileRouter.post(
   uploadFile,
 );
 
+// delete folder
+fileRouter.delete("/folder/:folderId", protect, deleteFolder);
+
 // view image/pdf
 fileRouter.get("/:id", protect, viewFile);
 
 // delete file
 fileRouter.delete("/:id", protect, deleteFile);
-
-// delete folder
-fileRouter.delete("/folder/:folderId", protect, deleteFolder);
 
 module.exports = fileRouter;
